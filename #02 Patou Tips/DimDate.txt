@@ -1,0 +1,32 @@
+--> Paste the following lines in PowerBI
+--> Path: « Modeling > New Table »
+
+DimDate = GENERATE(CALENDAR("1/1/2021","31/12/2030"),
+VAR An = YEAR([Date])
+VAR Semestre = if(QUARTER([Date])<3,"S1","S2")
+VAR Trimestre ="Q"&QUARTER([Date])
+VAR MoisLong = FORMAT([Date],"Mmmm")
+VAR Mois = FORMAT([Date],"Mmm")
+VAR Jour = FORMAT([Date],"dddd")
+VAR NumMois = MONTH([Date])
+VAR NumMoisTexte = FORMAT([Date],"M")
+VAR NumSemaine = WEEKNUM([Date],21)
+VAR NumJourSem = WEEKDAY([Date],2)
+VAR NumJourMois = DAY([Date])
+RETURN ROW(
+"Year",An,
+"YearSemester",An&"-"&semestre,
+"YearQuarter",An&"-"&Trimestre,
+"YearMonth",An&"-"&IF(NumMois<10,"0"&NumMois,NumMois),
+"YearWeek",An&"-S"&NumSemaine,
+"Semester",Semestre,
+"Quarter",Trimestre,
+"MonthLong",MoisLong,
+"MonthFrench",Mois,
+"NumMonthText",NumMoisTexte,
+"Week","W "&NumSemaine,
+"Day",Jour,
+"NumMonth",NumMois,
+"NumWeek",NumSemaine,
+"NumDayWeek",NumJourSem,
+"NumDayMonth",NumJourMois))
