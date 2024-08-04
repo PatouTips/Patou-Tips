@@ -1,32 +1,33 @@
 --> Paste the following lines in PowerBI
 --> Path: « Modeling > New Table »
 
-DimDate = GENERATE(CALENDAR("1/1/2021","31/12/2030"),
-VAR An = YEAR([Date])
-VAR Semestre = if(QUARTER([Date])<3,"S1","S2")
-VAR Trimestre ="Q"&QUARTER([Date])
-VAR MoisLong = FORMAT([Date],"Mmmm")
-VAR Mois = FORMAT([Date],"Mmm")
-VAR Jour = FORMAT([Date],"dddd")
-VAR NumMois = MONTH([Date])
-VAR NumMoisTexte = FORMAT([Date],"M")
-VAR NumSemaine = WEEKNUM([Date],21)
-VAR NumJourSem = WEEKDAY([Date],2)
-VAR NumJourMois = DAY([Date])
-RETURN ROW(
-"Year",An,
-"YearSemester",An&"-"&semestre,
-"YearQuarter",An&"-"&Trimestre,
-"YearMonth",An&"-"&IF(NumMois<10,"0"&NumMois,NumMois),
-"YearWeek",An&"-S"&NumSemaine,
-"Semester",Semestre,
-"Quarter",Trimestre,
-"MonthLong",MoisLong,
-"MonthFrench",Mois,
-"NumMonthText",NumMoisTexte,
-"Week","W "&NumSemaine,
-"Day",Jour,
-"NumMonth",NumMois,
-"NumWeek",NumSemaine,
-"NumDayWeek",NumJourSem,
-"NumDayMonth",NumJourMois))
+DimDate = GENERATE(CALENDAR("1/1/2021","31/12/2030"),   // Generate dates from 1/1/2021 until 31/12/2030 (To adjust to your needing)
+VAR An = YEAR([Date])                                   // Year
+VAR Semester = if(QUARTER([Date])<3,"S1","S2")          // Return S1 or S2
+VAR Quarter ="Q"&QUARTER([Date])                        // Return Q1, Q2, Q2 or Q3
+VAR MonthLong = FORMAT([Date],"Mmmm")                   // January, February, March...      (Month in the language of your system)
+VAR Month = FORMAT([Date],"Mmm")                        // Jan, Feb, Mar...                 (Month in the language of your system)
+VAR MonthShort = UPPER(LEFT(Month,1))                   // J, F, M...                       (Month in the language of your system)
+VAR Day = FORMAT([Date],"dddd")                         // Monday, Thuesday, Wednesday...   (Month in the language of your system)
+VAR NumMonth = MONTH([Date])                            // 1 for January, 2 for February... 12 for December
+VAR NumWeek = WEEKNUM([Date],21)                        // 1 when week begins on Sunday, 2 when week begins on Monday, or 21 for ISO week numbers
+VAR NumDayWeek = WEEKDAY([Date],2)                      // Return a number day, 1 for Monday ...to 7 for Sunday (depend of the extension)
+VAR NumDayMonth = DAY([Date])                           // 1 for the first day of the month ...to the last day of the month (28,29, 30 or 31)
+RETURN ROW(    ----------------------------------Create column for each row bellow-----------------------------------------------------------------
+"Year",An,                                                      // See line 2
+"YearSemester",An&"-"&semester,                                 // Year + Semester / For example: 2024-S1, 2024-S2
+"YearQuarter",An&"-"&Quarter,                                   // Year + Quarter / For example: 2024-Q1, 2024-Q2, 2024-Q3, 2024-Q4
+"YearMonth",An&"-"&IF(NumMonth<10,"0"&NumMonth,NumMonth),       // Year + Month number / For example: 2024-01, 2024-02 ...to 2024-12
+"YearWeek",An&"-W"&NumWeek,                                     // Year + Week number / For example: 2024-W1, 2024-W2 ...to 2024-W52 or 2024-W53
+"Semester",Semester,                                            // See line 3
+"Quarter",Quarter,                                              // See line 4
+"MonthLong",MonthLong,                                          // See line 5
+"Month",Month,                                                  // See line 6
+"MonthShort",IF(NumMonth IN {5,6,8},MonthShort&" ", IF(NumMonth = 7, MonthShort&"  ",MonthShort)),
+// See line 7, setting according country language, for the months who start with the same letter one space or a double space are added
+"Week","W "&NumWeek,                                            // Week / For example : W1, W2 ...to W52 or W53
+"Day",Day,                                                      // See line 8
+"NumMonth",NumMonth,                                            // See line 9       (usefull to sort Month, MonthLong and MonthShort chronologically)
+"NumWeek",NumWeek,                                              // See line 10      (usefull to sort Week chronologically)
+"NumDayWeek",NumDayWeek,                                        // See line 11      (usefull to sort Day chronologically)
+"NumDayMonth",NumDayMonth))                                     // See line 12
