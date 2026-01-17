@@ -1,0 +1,141 @@
+createOrReplace
+
+	table Dim_Date
+		lineageTag: 34cdb20a-03a2-4c61-ba8a-04783fd07290
+		dataCategory: Time
+
+		column Date
+			isKey
+			formatString: Short Date
+			lineageTag: 22373ede-f91a-4fbe-874d-27442d776f61
+			isNameInferred
+			sourceColumn: [Date]
+
+		column Year
+			lineageTag: 47340797-aa4e-4ac1-aae9-e55c719daed3
+			isNameInferred
+			sourceColumn: [Year]
+
+		column YearSemester
+			lineageTag: 197f0fad-8161-42e7-b516-7311bcf81812
+			isNameInferred
+			sourceColumn: [YearSemester]
+
+		column YearQuarter
+			lineageTag: 4ab4ae5c-6dae-4242-aae2-f63a8dea5ad2
+			isNameInferred
+			sourceColumn: [YearQuarter]
+
+		column YearMonth
+			lineageTag: 0b7898f4-8cc1-478f-8366-fba9cd175596
+			isNameInferred
+			sourceColumn: [YearMonth]
+
+		column YearWeek
+			lineageTag: 32f05692-a8ee-4f8d-abae-ae7df8e6045c
+			isNameInferred
+			sourceColumn: [YearWeek]
+
+		column Semester
+			lineageTag: 454ecb13-e97c-4b5f-b2cd-d26714588280
+			isNameInferred
+			sourceColumn: [Semester]
+
+		column Quarter
+			lineageTag: f35e400c-2243-4665-ae20-7a21b57aeb83
+			isNameInferred
+			sourceColumn: [Quarter]
+
+		column MonthLong
+			lineageTag: 7ef3516f-cd26-4f60-9bb8-f3c2f4fa3f64
+			isNameInferred
+			sourceColumn: [MonthLong]
+
+		column Month
+			lineageTag: ff29e7ab-2748-4ad9-b76f-c785e1ab76d1
+			isNameInferred
+			sourceColumn: [Month]
+
+		column MonthShort
+			lineageTag: af5b2567-d848-4f4b-b0fa-74a99aa567c3
+			isNameInferred
+			sourceColumn: [MonthShort]
+
+		column Week
+			lineageTag: e93f19ff-65dd-4936-a74f-7d65331215ab
+			isNameInferred
+			sourceColumn: [Week]
+
+		column Day
+			lineageTag: 688186b9-0ba2-444f-85ac-423e02cba134
+			isNameInferred
+			sourceColumn: [Day]
+
+		column NumMonth
+			lineageTag: a1ce6390-d121-4d81-890d-e844d38dc893
+			isNameInferred
+			sourceColumn: [NumMonth]
+
+		column NumWeek
+			lineageTag: f02d5587-73cd-446a-9c5a-8e4760317c61
+			isNameInferred
+			sourceColumn: [NumWeek]
+
+		column NumDayWeek
+			lineageTag: 3ae8ffac-345b-46fb-9e97-951d59a4ba45
+			isNameInferred
+			sourceColumn: [NumDayWeek]
+
+		column NumDayMonth
+			lineageTag: 9ebe713a-7936-43bf-b2b7-a29bac2a5566
+			isNameInferred
+			sourceColumn: [NumDayMonth]
+
+		hierarchy 'Date Hierarchy'
+			lineageTag: 0dea9cfc-d94e-4d3d-bfc9-1d6182d09160
+
+			level Year
+				lineageTag: 46d5e727-b0ce-4c14-a1e7-b4b4026f57e4
+				column: Year
+
+			level Month
+				lineageTag: 953f194f-35d8-476f-b65f-0f1b4e11fb0b
+				column: Month
+
+			level Date
+				lineageTag: 259e95bb-7e83-486c-b793-bb65e98074ec
+				column: Date
+
+		partition Dim_Date = calculated
+			mode: import
+			source =
+					GENERATE(CALENDAR("1/1/2021","31/12/2030"),
+					VAR An = YEAR([Date])
+					VAR Semester = if(QUARTER([Date])<3,"S1","S2")
+					VAR Quarter ="Q"&QUARTER([Date])
+					VAR MonthLong = FORMAT([Date],"Mmmm")
+					VAR Month = FORMAT([Date],"Mmm")
+					VAR MonthShort = UPPER(LEFT(Month,1))
+					VAR Day = FORMAT([Date],"dddd")
+					VAR NumMonth = MONTH([Date])
+					VAR NumWeek = WEEKNUM([Date],21)
+					VAR NumDayWeek = WEEKDAY([Date],2)
+					VAR NumDayMonth = DAY([Date])
+					RETURN ROW(
+					"Year",An,
+					"YearSemester",An&"-"&semester,
+					"YearQuarter",An&"-"&Quarter,
+					"YearMonth",An&"-"&IF(NumMonth<10,"0"&NumMonth,NumMonth),
+					"YearWeek",An&"-W"&NumWeek,
+					"Semester",Semester,
+					"Quarter",Quarter,
+					"MonthLong",MonthLong,
+					"Month",Month,
+					"MonthShort",IF(NumMonth IN {5,6,8},MonthShort&" ", IF(NumMonth = 7, MonthShort&"  ",MonthShort)),
+					"Week","W "&NumWeek,
+					"Day",Day,
+					"NumMonth",NumMonth,
+					"NumWeek",NumWeek,
+					"NumDayWeek",NumDayWeek,
+					"NumDayMonth",NumDayMonth))
+
