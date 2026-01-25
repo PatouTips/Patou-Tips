@@ -1,0 +1,70 @@
+// Function to retrieve products from Open Food Facts by category
+let
+    // Configuration
+    BaseUrl = "https://world.openfoodfacts.org/api/v2/search",
+    Category = "beverages", // Modify this category according to your needs
+    PageSize = 100, // Number of products per page (max 100)
+    MaxPages = 5, // Maximum number of pages to retrieve
+    
+    // Function to retrieve a product page
+    GetPage = (pageNumber as number) =>
+        let
+            Url = BaseUrl & 
+                  "?categories_tags_en=" & Category &
+                  "&page=" & Number.ToText(pageNumber) &
+                  "&page_size=" & Number.ToText(PageSize) &
+                  "&fields=code,product_name,brands,categories,nutrition_grades,nutriscore_grade,energy-kcal_100g,fat_100g,saturated-fat_100g,carbohydrates_100g,sugars_100g,proteins_100g,salt_100g,ingredients_text",
+            
+            Source = Json.Document(Web.Contents(Url)),
+            Products = Source[products],
+            Count = Source[count],
+            
+            // Add page number and counting info
+            Result = [
+                Products = Products,
+                Count = Count,
+                Page = pageNumber
+            ]
+        in
+            Result,
+    
+    // Retrieve all pages
+    AllPages = List.Generate(
+        () => [Result = GetPage(1), Page = 1],
+        each [Page] <= MaxPages and List.Count([Result][Products]) > 0,
+        each [Result = GetPage([Page] + 1), Page = [Page] + 1],
+        each [Result][Products]
+    ),
+    
+    // Combine all pages
+    CombinedProducts = List.Combine(AllPages),
+    
+    // Convertir en table
+    ProductsTable = Table.FromList(CombinedProducts, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+    ExpandedProducts = Table.ExpandRecordColumn(ProductsTable, "Column1", 
+        {"code", "product_name", "brands", "categories", "nutrition_grades", "nutriscore_grade", 
+         "energy-kcal_100g", "fat_100g", "saturated-fat_100g", "carbohydrates_100g", 
+         "sugars_100g", "proteins_100g", "salt_100g", "ingredients_text"},
+        {"code", "product_name", "brands", "categories", "nutrition_grades", "nutriscore_grade", 
+         "energy_kcal_100g", "fat_100g", "saturated_fat_100g", "carbohydrates_100g", 
+         "sugars_100g", "proteins_100g", "salt_100g", "ingredients_text"}),
+    
+    // Clean and classify the columns
+    CleanedData = Table.TransformColumnTypes(ExpandedProducts, {
+        {"code", type text},
+        {"product_name", type text},
+        {"brands", type text},
+        {"categories", type text},
+        {"nutrition_grades", type text},
+        {"nutriscore_grade", type text},
+        {"energy_kcal_100g", type number},
+        {"fat_100g", type number},
+        {"saturated_fat_100g", type number},
+        {"carbohydrates_100g", type number},
+        {"sugars_100g", type number},
+        {"proteins_100g", type number},
+        {"salt_100g", type number},
+        {"ingredients_text", type text}
+    })
+in
+    CleanedData
