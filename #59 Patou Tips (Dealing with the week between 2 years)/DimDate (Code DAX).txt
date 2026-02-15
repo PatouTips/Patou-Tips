@@ -1,0 +1,36 @@
+DimDate = GENERATE(CALENDAR("1/1/2021","31/12/2040"),   // Generate dates from 1/1/2021 until 31/12/2030 (To adjust to your needing)
+VAR YearDimDate = YEAR([Date])                          // Year. Note: Variable name can't be "Year" because this is already use for DAX function
+VAR YearShort = YearDimDate-2000                        // Displays the year as two digits (for example: 2025 is displayed as 25)
+VAR Semester = if(QUARTER([Date])<3,"S1","S2")          // Return S1 or S2
+VAR Quarter ="Q"&QUARTER([Date])                        // Return Q1, Q2, Q2 or Q3
+VAR MonthLong = FORMAT([Date],"Mmmm")                   // January, February, March...      (Month in the language of your system)
+VAR Month = FORMAT([Date],"Mmm")                        // Jan, Feb, Mar...                 (Month in the language of your system)
+VAR MonthShort = UPPER(LEFT(Month,1))                   // J, F, M...                       (Month in the language of your system)
+VAR Day = FORMAT([Date],"dddd")                         // Monday, Thuesday, Wednesday...   (Month in the language of your system)
+VAR NumMonth = MONTH([Date])                            // 1 for January, 2 for February... 12 for December
+VAR NumWeek = WEEKNUM([Date],21)                        // 1 when week begins on Sunday, 2 when week begins on Monday, or 21 for ISO week numbers
+VAR NumWeekNoISO = WEEKNUM([Date],2)                    // 1 when week begins on Sunday, 2 when week begins on Monday
+VAR NumDayWeek = WEEKDAY([Date],2)                      // Return a number day, 1 for Monday ...to 7 for Sunday (depend of the extension)
+VAR NumDayMonth = DAY([Date])                           // 1 for the first day of the month ...to the last day of the month (28,29, 30 or 31)
+
+RETURN ROW(    ----------------------------------Create column for each row bellow-----------------------------------------------------------------
+"Year",YearDimDate,                                                      // See line 2
+"YearShort", YearShort,                                                  // See line 3
+"YearSemester",YearDimDate&"-"&semester,                                 // Year + Semester / For example: 2024-S1, 2024-S2
+"YearQuarter",YearDimDate&"-"&Quarter,                                   // Year + Quarter / For example: 2024-Q1, 2024-Q2, 2024-Q3, 2024-Q4
+"YearMonth",YearDimDate&"-"&IF(NumMonth<10,"0"&NumMonth,NumMonth),       // Year + Month number / For example: 2024-01, 2024-02 ...to 2024-12
+"YearWeek",IF(NumWeek < 5 && NumWeekNoISO > 50, YearShort-1,
+                IF(NumWeek > 50 && NumWeekNoISO < 5, YearShort-1, YearShort))
+            &"-W"& FORMAT(NumWeek,"00"),                        // YearShort + Week number / For example: 24-W1, 24-W2 ...to 24-W52 or 24-W53
+"Semester",Semester,                                            // See line 4
+"Quarter",Quarter,                                              // See line 5
+"MonthLong",MonthLong,                                          // See line 6
+"Month",Month,                                                  // See line 7
+"MonthShort",IF(NumMonth IN {5,6,8},MonthShort&" ", IF(NumMonth = 7, MonthShort&"  ",MonthShort)),
+// See line 7, setting according country language, for the months who start with the same letter one space or a double space are added
+"Week","W "&NumWeek,                                            // Week / For example : W1, W2 ...to W52 or W53
+"Day",Day,                                                      // See line 9
+"NumMonth",NumMonth,                                            // See line 10       (usefull to sort Month, MonthLong and MonthShort chronologically)
+"NumWeek",NumWeek,                                              // See line 11      (usefull to sort Week chronologically)
+"NumDayWeek",NumDayWeek,                                        // See line 12      (usefull to sort Day chronologically)
+"NumDayMonth",NumDayMonth))                                     // See line 13
