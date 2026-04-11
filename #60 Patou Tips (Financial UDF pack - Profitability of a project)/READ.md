@@ -52,7 +52,7 @@ Each function generates an value for each period used to calculate the profitabi
 createOrReplace
 
 	/// Discounted Cash Flow (DCF) is a valuation method that estimates the value of an investment, for each period of the project, based on its expected future cash flows (Cash Flow = Revenue + Costs + Investment), discounted using a discount factor. Put Costs and Investment in negative value. The Discounted Rate is a decimal value representing a percentage. For example, 0.101 for 10.1%.
-	function 'PatouTips.Finance.ProjectProfitability.DCF' = ```
+	function 'DCF.Patou.Tips' = ```
 			
 			    (
 			        Revenue_measure :expr,
@@ -86,10 +86,10 @@ createOrReplace
 			
 			            RETURN (Revenue_measure+Cost_measure+Investment_measure)*Yearly_Discount_Rate
 			```
-		lineageTag: 54807070-1228-46ed-8407-bbb2b6cacf2a
+		lineageTag: d6f573c3-0b78-4c6e-801f-535d904ab35b
 
-	/// Discount Factor (DF) is a valuation method that estimates, for each period of the project, the value of one euro adjusted for inflation or to a minimum expected return on the investment, this the "Discount Rate". The Discounted Rate is a decimal value representing a percentage. For example, 0.101 for 10.1%. Note: Entering the value of an investment helps determine the first year of the project.
-	function 'PatouTips.Finance.ProjectProfitability.DF' = ```
+	/// Discount Factor (DF) is a valuation method that estimates, for each period of the project, the value of one euro adjusted for inflation or to a minimum expected return on the investment, this the "Discounted Rate". The Discounted Rate is a decimal value representing a percentage. For example, 0.101 for 10.1%. Note: Entering the value of an investment helps determine the first year of the project.
+	function 'DF.Patou.Tips' = ```
 			
 			    (
 			        Investment_measure : expr,
@@ -121,10 +121,10 @@ createOrReplace
 			
 			    RETURN Discount_Factor
 			```
-		lineageTag: ed899128-9112-40ed-a3f8-27b059184cbb
+		lineageTag: 0664078a-1091-4b62-8c08-a02ea960b4fd
 
 	/// Free Cash Flow (FCF) is a valuation method that estimates the value of an investment, for each period of the project, based on its expected future cash flows (Cash Flow = Revenue + Costs + Investment), discounted using a discount factor. Put Costs and Investment in negative value. The Discounted Rate is a decimal value representing a percentage. For example, 0.101 for 10.1%.
-	function 'PatouTips.Finance.ProjectProfitability.FCF' = ```
+	function 'FCF.Patou.Tips' = ```
 			
 			    (
 			        Revenue_measure :expr,
@@ -134,10 +134,10 @@ createOrReplace
 			
 			    Revenue_measure+Cost_measure+Investment_measure
 			```
-		lineageTag: b9468ecc-625f-412d-9e51-c4d888c0431d
+		lineageTag: ce388b1b-3673-454a-a5be-6d00b2a8d3aa
 
 	/// Internal Rate of Return (IRR). The IRR is the discount rate at wich the net present value (NPV) of a set of Discounted Cash Flows (DCF) is eaqual to zero. Put Costs and Investment in negative value. The Discounted Rate is a decimal value representing a percentage. For example, 0.101.  for 10.1%. "Fact_table" is the business data table.
-	function 'PatouTips.Finance.ProjectProfitability.IRR' = ```
+	function 'IRR.Patou.Tips' = ```
 			
 			    (
 			        Revenue_measure :expr,
@@ -166,10 +166,10 @@ createOrReplace
 			        'Dim Date',
 			        'Dim Date'[Year] >= First_Selected_Year && 'Dim Date'[Year] <= Last_Selected_Year))
 			```
-		lineageTag: a666fdee-7d48-4386-a704-3687b4de4d00
+		lineageTag: 7e5421a7-e2d0-4313-b67f-ea0df7569392
 
-	/// Net Present Value (NPV). This is the cumulative Discounted Cash Flow (DCF), for each period of the project. NPV evaluates the profitability of an investment by comparing the present value of expected future cash flows to the initial investment. Put Costs and Investment in negative value. The Discounted Rate is a decimal value representing a percentage. For example, 0.101 for 10.1%.
-	function 'PatouTips.Finance.ProjectProfitability.NPV' = ```
+	/// Net Present Value (NPV). This is the cumalative Discounted Cash Flow (DCF), for each period of the project. NPV evaluates the profitability of an investment by comparing the present value of expected future cash flows to the initial investment. Put Costs and Investment in negative value. The Discounted Rate is a decimal value representing a percentage. For example, 0.101 for 10.1%.
+	function 'NPV.Patou.Tips' = ```
 			
 			    (
 			        Revenue_measure :expr,
@@ -217,10 +217,10 @@ createOrReplace
 			        BLANK()
 			    )
 			```
-		lineageTag: b874f28f-12b2-464d-9646-d23191eef941
+		lineageTag: c0f1e000-2072-46d8-8767-1346c7dbca9d
 
 	/// Net Present Value (NPV). This is the value of the NPV for the entire project. Useful for KPI.
-	function 'PatouTips.Finance.ProjectProfitability.NPV.Total' = ```
+	function 'NPV.Total.Patou.Tips' = ```
 			
 			    (
 			        NPV_measure :expr,
@@ -246,10 +246,10 @@ createOrReplace
 			        [NPV_Table]
 			    )
 			```
-		lineageTag: cb33e2c5-e3ce-46f1-9307-b1ce21b211b6
+		lineageTag: bee2cfe6-93fa-4572-a005-a3bedfa24814
 
 	/// Payback Number Year determines the number of years required to achieve a return on investment, so when the NPV becomes positive.
-	function 'PatouTips.Finance.ProjectProfitability.Payback.Nb.Year' = ```
+	function 'Payback.Nb.Year.Patou.Tips' = ```
 			
 			    (
 			        NPV_measure : expr,
@@ -278,10 +278,10 @@ createOrReplace
 			    )
 			RETURN IF(ISBLANK(First_Year),"No payback",First_Year-First_Selected_Year+1)
 			```
-		lineageTag: 45b3da81-b070-4e04-8884-4e9ef5442493
+		lineageTag: 452f5bb6-35fb-4c39-82b5-41a18b297c57
 
 	/// "Payback Year" determines the year of return on investment, that is, the moment when the NPV becomes positive.
-	function 'PatouTips.Finance.ProjectProfitability.Payback.Year' = ```
+	function 'Payback.Year.Patou.Tips' = ```
 			
 			    (
 			        NPV_Measure : expr,
@@ -304,7 +304,9 @@ createOrReplace
 			    )
 			RETURN IF(ISBLANK(First_Year),"No payback",First_Year)
 			```
-		lineageTag: ce560c75-4ed7-4390-bf10-1dfadcad64a9
+		lineageTag: fd93c723-192f-45f0-a5cb-0e86d7f67031
+
+
 ```
 
 
