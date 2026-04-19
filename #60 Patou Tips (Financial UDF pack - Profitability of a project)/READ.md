@@ -22,6 +22,8 @@ Each function generates an value for each period used to calculate the profitabi
 
 > To learn more about the financial concepts related to these functions, see the chapter "Financial Explanations".
 
+> Download DAX code of each function, see the chapter "3 - DAX code" 
+
 ---------------------------------------------------------------------
 
 ## How it works?
