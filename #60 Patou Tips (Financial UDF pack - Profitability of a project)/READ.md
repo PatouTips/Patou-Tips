@@ -18,11 +18,11 @@ This package of 8 DAX functions is designed to provide access to **key performan
 💡 Functions are created to be used independently, in whole or in part. Functions are not linked to each other by code. 
 Each function generates an value for each period used to calculate the profitability of a project. These values can be displayed as a matrix or a graph for example.
 
+> Download DAX code of each function, see the chapter "3 - DAX code" 
+
 <img width="1177" height="638" alt="image" src="https://github.com/user-attachments/assets/b038d038-c554-4030-b743-2f82b9aa9b9f" />
 
 > To learn more about the financial concepts related to these functions, see the chapter "Financial Explanations".
-
-> Download DAX code of each function, see the chapter "3 - DAX code" 
 
 ---------------------------------------------------------------------
 
