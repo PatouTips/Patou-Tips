@@ -237,6 +237,7 @@ FUNCTION IRR.Patou.Tips =
         Revenue_measure :expr,
         Cost_measure : expr,
         Investment_measure : expr,
+        Calendar_table : TABLE,
 		Year_date_of_calendar_table : anyref,
         Fact_table : table,
 		Year_date_of_fact_table : anyref
@@ -257,8 +258,8 @@ RETURN
 CALCULATE(
     XIRR(Fact_table,Revenue_measure+Cost_measure+Investment_measure,Year_date_of_fact_table,,0),
     FILTER(
-        'Dim Date',
-        'Dim Date'[Year] >= First_Selected_Year && 'Dim Date'[Year] <= Last_Selected_Year))
+        Calendar_table,
+        Year_date_of_calendar_table >= First_Selected_Year && Year_date_of_calendar_table <= Last_Selected_Year))
 ```
 
 #### Payback (Year)
