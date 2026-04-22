@@ -22,7 +22,7 @@ Each function generates an value for each period used to calculate the profitabi
 
 > Download DAX code of each function, see the chapter "3 - DAX code" 
 
-<img width="1177" height="638" alt="image" src="https://github.com/user-attachments/assets/b038d038-c554-4030-b743-2f82b9aa9b9f" />
+![](https://github.com/PatouTips/Patou-Tips/blob/main/%2360%20Patou%20Tips%20(Financial%20UDF%20pack%20-%20Profitability%20of%20a%20project)/Simulation%20sample.png)
 
 > To learn more about the financial concepts related to these functions, see the chapter "Financial Explanations".
 
