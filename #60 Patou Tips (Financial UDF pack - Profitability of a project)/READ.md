@@ -9,25 +9,14 @@ This package of 8 DAX functions is designed to provide access to **key performan
 | Functions                 	     | What it is?                                                  | Functions in Dax Lib website
 | -----------------------------------|--------------------------------------------------------------|-----------------------------------
 | **DF**.PatouTips                   | Calculate DF (Discounted Factor) by period                   | PatouTips.Finance.ProjectProfitability.**DF**  
-| **FCF**.PatouTips                  | Calculate FCF (Discounted Free Cash Flow) by period          |
-| **DCF**.PatouTips                  | Calculate DCF (Discounted Cash Flow) by period               |
-| **IRR**.PatouTips                  | Calculate IRR (Internal Rate Return) by period               |
-| **NPV**.PatouTips                  | Calculate NPV (Net Present Value) by period                  |
-| **NPV.Total**.PatouTips            | Calculate NPV (Net Present Value) at end of period     	     |
-| **Payback.Year**.PatouTips         | Calculate the year of the project payback                    |
-| **Payback.Nb.Year**.PatouTips      | Calculate the number of year of the project payback          |
+| **FCF**.PatouTips                  | Calculate FCF ( Free Cash Flow) by period                    | PatouTips.Finance.ProjectProfitability.**FCF**
+| **DCF**.PatouTips                  | Calculate DCF (Discounted Cash Flow) by period               | PatouTips.Finance.ProjectProfitability.**DCF**
+| **IRR**.PatouTips                  | Calculate IRR (Internal Rate Return) by period               | PatouTips.Finance.ProjectProfitability.**IRR**
+| **NPV**.PatouTips                  | Calculate NPV (Net Present Value) by period                  | PatouTips.Finance.ProjectProfitability.**NPV**
+| **NPV.Total**.PatouTips            | Calculate NPV (Net Present Value) at end of period     	    | PatouTips.Finance.ProjectProfitability.**NPV.Total**
+| **Payback.Year**.PatouTips         | Calculate the year of the project payback                    | PatouTips.Finance.ProjectProfitability.**Payback.Year**
+| **Payback.Nb.Year**.PatouTips      | Calculate the number of year of the project payback          | PatouTips.Finance.ProjectProfitability.**Payback.Nb.Year**
 
-
-| Functions                 	      | What it is?                                                  |
-| ------------------------------------|--------------------------------------------------------------|
-| PatouTips.Finance.ProjectProfitability.**DF**                   | Calculate DF (Discounted Factor) by period                   |
-| PatouTips.Finance.ProjectProfitability.**FCF**                  | Calculate FCF (Free Cash Flow) by period          |
-| PatouTips.Finance.ProjectProfitability.**DCF**                  | Calculate DCF (Discounted Cash Flow) by period               |
-| PatouTips.Finance.ProjectProfitability.**IRR**                  | Calculate IRR (Internal Rate Return) by period               |
-| PatouTips.Finance.ProjectProfitability.**NPV**                  | Calculate NPV (Net Present Value) by period                  |
-| PatouTips.Finance.ProjectProfitability.**NPV.Total**            | Calculate NPV (Net Present Value) at end of period     	     |
-| PatouTips.Finance.ProjectProfitability.**Payback.Year**         | Calculate the year of the project payback                    |
-| PatouTips.Finance.ProjectProfitability.**Payback.Nb.Year**      | Calculate the number of year of the project payback          |
 
 💡 Functions are created to be used independently, in whole or in part. Functions are not linked to each other by code. 
 Each function generates an value for each period used to calculate the profitability of a project. These values can be displayed as a matrix or a graph for example.
