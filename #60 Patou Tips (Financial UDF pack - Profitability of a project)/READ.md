@@ -56,6 +56,9 @@ Each function generates an value for each period used to calculate the profitabi
 ### 3 - DAX Code
 
 #### DF - Discount Factor
+> Function
+> Patou Tip GitHub: **DF.Patou.Tips**
+> Dax Lib.org: **PatouTips.Finance.ProjectProfitability.DF**
 ```DAX
 DEFINE
 /// Discount Factor (DF) is a valuation method that estimates, for each period of the project, the value of one euro adjusted for inflation or to a minimum expected return on the investment, this the "Discount Rate". The Discounted Rate is a decimal value representing a percentage. For example, 0.101 for 10.1%. Note: Entering the value of an investment helps determine the first year of the project.
