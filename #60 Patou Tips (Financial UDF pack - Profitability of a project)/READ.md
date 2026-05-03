@@ -17,7 +17,7 @@ This package of 8 DAX functions is designed to provide access to **key performan
 | **Payback.Year**.PatouTips         | Calculate the year of the **project payback**                    | PatouTips.Finance.ProjectProfitability.**Payback.Year**
 | **Payback.Nb.Year**.PatouTips      | Calculate the number of year of the **project payback**          | PatouTips.Finance.ProjectProfitability.**Payback.Nb.Year**
 
-> In order to integrate Patou Tips financial functions into the Dax Lib collaborative website ecosystem, the functions have been renamed. The DAX code remains the same, however.
+> In order to integrate Patou Tips financial functions into the ``Dax Lib collaborative website`` ecosystem, the functions have been renamed. The DAX code remains the same, however.
 
 💡 Functions are created to be used independently, in whole or in part. Functions are not linked to each other by code. 
 Each function generates an value for each period used to calculate the profitability of a project. These values can be displayed as a matrix or a graph for example.
