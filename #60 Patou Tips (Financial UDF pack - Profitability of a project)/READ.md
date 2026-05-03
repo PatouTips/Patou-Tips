@@ -94,6 +94,7 @@ FUNCTION DF.Patou.Tips =
 ```
 
 #### FCF - Free Cash Flow
+> ``Function``: Patou Tip GitHub = **FCF.Patou.Tips** / Dax Lib.org = **PatouTips.Finance.ProjectProfitability.FCF**
 ```DAX
 DEFINE
 /// Free Cash Flow (FCF) is a valuation method that estimates the value of an investment, for each period of the project, based on its expected future cash flows (Cash Flow = Revenue + Costs + Investment), discounted using a discount factor. Put Costs and Investment in negative value. The Discounted Rate is a decimal value representing a percentage. For example, 0.101 for 10.1%.
@@ -109,6 +110,7 @@ FUNCTION FCF.Patou.Tips =
 ```
 
 #### DCF - Discounted Cash Flow
+> ``Function``: Patou Tip GitHub = **DCF.Patou.Tips** / Dax Lib.org = **PatouTips.Finance.ProjectProfitability.DCF**
 ```DAX
 DEFINE
 /// Discounted Cash Flow (DCF) is a valuation method that estimates the value of an investment, for each period of the project, based on its expected future cash flows (Cash Flow = Revenue + Costs + Investment), discounted using a discount factor. Put Costs and Investment in negative value. The Discounted Rate is a decimal value representing a percentage. For example, 0.101 for 10.1%.
@@ -148,6 +150,7 @@ FUNCTION DCF.Patou.Tips =
 ```
 
 #### NPV - Net Present Value
+> ``Function``: Patou Tip GitHub = **NPV.Patou.Tips** / Dax Lib.org = **PatouTips.Finance.ProjectProfitability.NPV**
 ```DAX
 DEFINE
 /// Net Present Value (NPV). This is the cumulative Discounted Cash Flow (DCF), for each period of the project. NPV evaluates the profitability of an investment by comparing the present value of expected future cash flows to the initial investment. Put Costs and Investment in negative value. The Discounted Rate is a decimal value representing a percentage. For example, 0.101 for 10.1%.
@@ -201,6 +204,7 @@ RETURN
 ```
 
 #### NPV Total - Net Present Value
+> ``Function``: Patou Tip GitHub = **NPV.Total.Patou.Tips** / Dax Lib.org = **PatouTips.Finance.ProjectProfitability.NPV.Total**
 ```DAX
 DEFINE
 /// Net Present Value (NPV). This is the value of the NPV for the entire project. Useful for KPI.
@@ -231,6 +235,7 @@ RETURN
 ```
 
 #### IRR - Internal Rate of Return
+> ``Function``: Patou Tip GitHub = **IRR.Patou.Tips** / Dax Lib.org = **PatouTips.Finance.ProjectProfitability.IRR**
 ```DAX
 DEFINE
 /// Internal Rate of Return (IRR). The IRR is the discount rate at wich the net present value (NPV) of a set of Discounted Cash Flows (DCF) is eaqual to zero. Put Costs and Investment in negative value. The Discounted Rate is a decimal value representing a percentage. For example, 0.101.  for 10.1%. "Fact_table" is the business data table.
@@ -266,6 +271,7 @@ CALCULATE(
 ```
 
 #### Payback (Year)
+> ``Function``: Patou Tip GitHub = **Payback.Year.Patou.Tips** / Dax Lib.org = **PatouTips.Finance.ProjectProfitability.Payback.Year**
 ```DAX
 DEFINE
 /// "Payback Year" determines the year of return on investment, that is, the moment when the NPV becomes positive.
@@ -294,6 +300,7 @@ RETURN IF(ISBLANK(First_Year),"No payback",First_Year)
 ```
 
 #### Payback (number of years)
+> ``Function``: Patou Tip GitHub = **Payback.Nb.Year.Patou.Tips** / Dax Lib.org = **PatouTips.Finance.ProjectProfitability.Payback.Nb.Year**
 ```DAX
 DEFINE
 /// Payback Number Year determines the number of years required to achieve a return on investment, so when the NPV becomes positive.
