@@ -6,9 +6,9 @@
 ## About this financial package...
 This package of 8 DAX functions is designed to provide access to **key performance indicators (KPIs)** representative of project profitability, such as **IRR, NPV, and payback**. It also allows for the calculation of the **metrics** such as **DF, FCF, and DCF**.
 
-| Functions                 	     | What it is?                                                  |
-| -----------------------------------|--------------------------------------------------------------|
-| **DF**.PatouTips                   | Calculate DF (Discounted Factor) by period                   |
+| Functions                 	     | What it is?                                                  | Functions in Dax Lib website
+| -----------------------------------|--------------------------------------------------------------|-----------------------------------
+| **DF**.PatouTips                   | Calculate DF (Discounted Factor) by period                   | PatouTips.Finance.ProjectProfitability.**DF**  
 | **FCF**.PatouTips                  | Calculate FCF (Discounted Free Cash Flow) by period          |
 | **DCF**.PatouTips                  | Calculate DCF (Discounted Cash Flow) by period               |
 | **IRR**.PatouTips                  | Calculate IRR (Internal Rate Return) by period               |
@@ -16,6 +16,18 @@ This package of 8 DAX functions is designed to provide access to **key performan
 | **NPV.Total**.PatouTips            | Calculate NPV (Net Present Value) at end of period     	     |
 | **Payback.Year**.PatouTips         | Calculate the year of the project payback                    |
 | **Payback.Nb.Year**.PatouTips      | Calculate the number of year of the project payback          |
+
+
+| Functions                 	      | What it is?                                                  |
+| ------------------------------------|--------------------------------------------------------------|
+| PatouTips.Finance.ProjectProfitability.**DF**                   | Calculate DF (Discounted Factor) by period                   |
+| PatouTips.Finance.ProjectProfitability.**FCF**                  | Calculate FCF (Free Cash Flow) by period          |
+| PatouTips.Finance.ProjectProfitability.**DCF**                  | Calculate DCF (Discounted Cash Flow) by period               |
+| PatouTips.Finance.ProjectProfitability.**IRR**                  | Calculate IRR (Internal Rate Return) by period               |
+| PatouTips.Finance.ProjectProfitability.**NPV**                  | Calculate NPV (Net Present Value) by period                  |
+| PatouTips.Finance.ProjectProfitability.**NPV.Total**            | Calculate NPV (Net Present Value) at end of period     	     |
+| PatouTips.Finance.ProjectProfitability.**Payback.Year**         | Calculate the year of the project payback                    |
+| PatouTips.Finance.ProjectProfitability.**Payback.Nb.Year**      | Calculate the number of year of the project payback          |
 
 💡 Functions are created to be used independently, in whole or in part. Functions are not linked to each other by code. 
 Each function generates an value for each period used to calculate the profitability of a project. These values can be displayed as a matrix or a graph for example.
