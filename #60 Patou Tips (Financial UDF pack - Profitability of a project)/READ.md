@@ -6,7 +6,7 @@
 ## About this financial package...
 This package of 8 DAX functions is designed to provide access to **key performance indicators (KPIs)** representative of project profitability, such as **IRR, NPV, and payback**. It also allows for the calculation of the **metrics** such as **DF, FCF, and DCF**.
 
-| Functions                 	     | What it is?                                                  | Functions in Dax Lib website
+| Functions                 	     | What it is?                                                  | Functions in ``Dax Lib website``
 | -----------------------------------|--------------------------------------------------------------|-----------------------------------
 | **DF**.PatouTips                   | Calculate DF (Discounted Factor) by period                   | PatouTips.Finance.ProjectProfitability.**DF**  
 | **FCF**.PatouTips                  | Calculate FCF ( Free Cash Flow) by period                    | PatouTips.Finance.ProjectProfitability.**FCF**
